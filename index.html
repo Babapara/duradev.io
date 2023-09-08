@@ -8,31 +8,35 @@
 </head>
 <body>
     <div class="slack">
-        <img src="slack.jpg" alt="" data-testid="slackDisplayImage">
         <h1 data-testid="slackUserName">duradev</h1>
-        <p data-testid="currentDayAndTime" id="currentdaytime">Day and time</p>
-        <p data-testid="currentUTCTime" id="utctime">UTC time in milliseconds</p>
-        <p data-testid="myTrack">Frontend-track</p>
+        <img src="slack.jpg" alt="duradev" data-testid="slackDisplayImage">
+        <p data-testid="currentDayOfTheWeek"></p>
+        <p data-testid="currentUTCTime"></p>
+        <p data-testid="myTrack">My track: Frontend</p>
         <a href="https://github.com/Babapara" data-testid="githubURL">GitHub Repository</a>
     </div>
 
     <script>
-        function Updatedayandtime() {
-            const Dayandtime = document.getElementById('currentdaytime');
-            const Utctime = document.getElementById('utctime');
+        function DayandTime() {
+            
+            const currentDayOfTheWeek = document.querySelector('[data-testid="currentDayOfTheWeek"]');
+            const currentUTCTime = document.querySelector('[data-testid="currentUTCTime"]');
+
             const today = new Date();
-            const options = { weekday: 'long', hour: '2-digit', minute: '2-digit' };
-            const Todaysdayandtime = new Intl.DateTimeFormat('en-US', options).format(today);
-            const TodaysUTC = today.getTime();
-            Dayandtime.textContent = Todaysdayandtime;
-            Utctime.textContent = `UTC time: ${TodaysUTC} milliseconds`;
+            
+            
+            const Daysinaweek = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+            
+            const Dayoftheweek = Daysinaweek[today.getDay()];
+
+            
+            currentDayOfTheWeek.textContent = `Day of the week: ${Dayoftheweek}`;
+            currentUTCTime.textContent = `UTC Time: ${today.getTime()} milliseconds`;
         }
 
+        DayandTime();
         
-        setInterval(Updatedayandtime, 1000);
-
-        
-        Updatedayandtime();
+        setInterval(DayandTime, 1000);
     </script>
 </body>
 </html>
