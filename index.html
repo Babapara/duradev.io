@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="Slack.css">
+    <title>My Slack</title>
+</head>
+<body>
+    <div class="slack">
+        <img src="slack.jpg" alt="" data-testid="slackDisplayImage">
+        <h1 data-testid="slackUserName">duradev</h1>
+        <p data-testid="currentDayAndTime" id="currentdaytime">Day and time</p>
+        <p data-testid="currentUTCTime" id="utctime">UTC time in milliseconds</p>
+        <p data-testid="myTrack">Frontend-track</p>
+        <a href="https://github.com/Babapara" data-testid="githubURL">GitHub Repository</a>
+    </div>
+
+    <script>
+        function Updatedayandtime() {
+            const Dayandtime = document.getElementById('currentdaytime');
+            const Utctime = document.getElementById('utctime');
+            const today = new Date();
+            const options = { weekday: 'long', hour: '2-digit', minute: '2-digit' };
+            const Todaysdayandtime = new Intl.DateTimeFormat('en-US', options).format(today);
+            const TodaysUTC = today.getTime();
+            Dayandtime.textContent = Todaysdayandtime;
+            Utctime.textContent = `UTC time: ${TodaysUTC} milliseconds`;
+        }
+
+        
+        setInterval(Updatedayandtime, 1000);
+
+        
+        Updatedayandtime();
+    </script>
+</body>
+</html>
